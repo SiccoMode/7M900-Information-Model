@@ -8,16 +8,16 @@ class Floor(models.Model):
     storey = models.IntegerField()
     
 class Zone(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
+    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
     length = models.DecimalField()
     width = models.DecimalField()
     x = models.DecimalField()
     y = models.DecimalField()
     floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
-    building_elements = models.ManyToManyField("BuildingElement", on_delete=models.CASCADE)
+    building_elements = models.ManyToManyField("BuildingElement", on_delete=models.DO_NOTHING)
 
 class BuildingElement(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
+    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
     name = models.CharField(max_length=100)
     description = models.CharField()
     height = models.IntegerField()
