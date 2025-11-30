@@ -9,23 +9,24 @@ class Floor(models.Model):
     
 class Zone(models.Model):
     globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
-    length = models.DecimalField()
-    width = models.DecimalField()
-    x = models.DecimalField()
-    y = models.DecimalField()
+    length = models.DecimalField(max_digits=8, decimal_places=2)
+    width = models.DecimalField(max_digits=8,decimal_places=2)
+    x = models.DecimalField(max_digits=8, decimal_places=2)
+    y = models.DecimalField(max_digits=8, decimal_places=2)
     floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
-    building_elements = models.ManyToManyField("BuildingElement", on_delete=models.DO_NOTHING)
+    building_elements = models.ManyToManyField("BuildingElement")
 
 class BuildingElement(models.Model):
     globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
     name = models.CharField(max_length=100)
-    description = models.CharField()
+    description = models.CharField(max_length=100)
     height = models.IntegerField()
     width = models.IntegerField()
     length = models.IntegerField()
     zones = models.ManyToManyField(Zone)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
+    zones = models.ManyToManyField(Zone)
 
     class ProgressState(models.TextChoices):
         READYFORCONSTRUCTION = "RE", _("Ready for Construction")
@@ -35,11 +36,9 @@ class BuildingElement(models.Model):
         PLANNED = "PL", _("Planned")
 
     current_state = models.CharField(choices=ProgressState)
-    class Meta:
-        abstract = True
 
 class Column(BuildingElement):
-    class GeometryType:
+    class GeometryType(models.TextChoices):
         CIRCULAR = "C"
         SQUARE = "SQ"
         RECTENGULAR = "RE"
