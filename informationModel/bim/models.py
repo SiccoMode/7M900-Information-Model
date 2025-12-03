@@ -27,6 +27,7 @@ class BuildingElement(models.Model):
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     zones = models.ManyToManyField(Zone)
+    personResponsible = models.CharField(default="Sicco Oortwijn", max_length=100)
 
     class ProgressState(models.TextChoices):
         READYFORCONSTRUCTION = "RE", _("Ready for Construction")
