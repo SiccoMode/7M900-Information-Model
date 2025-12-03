@@ -7,18 +7,18 @@
 <div class="w-full sticky inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:5em;" id="menu-content">
     <ul class="list-reset">
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'courses' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">             
-            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Courses</span>      
+          <a href="{% url 'floors' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">             
+            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Floors</span>      
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'students' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
-            <span class="pb-1 md:pb-0 text-sm">Students</span>   
+          <a href="{% url 'zones' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
+            <span class="pb-1 md:pb-0 text-sm">Zones</span>   
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'teachers' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
-            <span class="pb-1 md:pb-0 text-sm">Teachers</span>   
+          <a href="{% url 'buildingelements' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
+            <span class="pb-1 md:pb-0 text-sm">Building Elements</span>   
           </a>
        </li>
     </ul>
@@ -29,24 +29,24 @@
 <h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Teachers</h1>
 
     <br />
-    <button type="submit"><a href="{% url 'newteacher' %}">Create a new teacher</a></button>
+    <button type="submit"><a href="{% url 'newzone' %}">Create a new teacher</a></button>
     <br />
     <br />
-    <p>Here are your teachers:</p>
-        {% if teachers %}
+    <p>Here are your Zones:</p>
+        {% if zones %}
                 <ul>
-                    {% for teacher in teachers %}
+                    {% for zone in zones %}
                     <blockquote class="border-l-4 border-red-500 my-8 pl-8 md:pl-12">
                         <li>
                             <div class = "row">
                                 <div class = "col-md-3">
-                                    Teacher ID#{{ teacher.id }}
+                                    Teacher ID#{{ zone.id }}
                                 </div>                        
                                 <div class = "col-md-3">
-                                    First Name: {{ teacher.firstName }}
+                                    First Name: {{ zone.firstName }}
                                 </div>
                                 <div class = "col-md-3">
-                                    Last Name: {{ teacher.lastName }}
+                                    Last Name: {{ zone.lastName }}
                                 </div>
                             </div>
                         </li>
@@ -54,7 +54,7 @@
                     {% endfor %}
                 </ul>
         {% else %}
-            <p>No teachers available.</p>
+            <p>No zones available.</p>
         {% endif %}
 
 {% endblock %}
