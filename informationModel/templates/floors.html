@@ -29,10 +29,10 @@
 <h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Floors</h1>
 
     <br />
-    <button type="submit"><a href="{% url 'newcourse' %}">Create a new course</a></button>
+    <button type="submit"><a href="{% url 'newfloor' %}">Create a new course</a></button>
     <br />
     <br />
-    <p>Here are your courses:</p>
+    <p>Zones:</p>
         {% if courses %}
                 <ul>
                     {% for course in courses %}
@@ -40,14 +40,8 @@
                         <li>
                             <div class = "row">
                                 <div class = "col-md-3">
-                                    Course ID#{{ course.id }}
+                                    Zone ID#{{ zones.id }}
                                 </div>                        
-                                <div class = "col-md-3">
-                                    Name: {{ course.name }}
-                                </div>
-                                <div class = "col-md-3">
-                                    Teacher: {{ course.teacher }}
-                                </div>
                                 <div class = "col-md-3">
                                     Created: {{ course.created }}
                                 </div>
@@ -57,7 +51,7 @@
                     {% endfor %}
                 </ul>
         {% else %}
-            <p>No courses available.</p>
+            <p>No floors available.</p>
         {% endif %}
 
 {% endblock %}
