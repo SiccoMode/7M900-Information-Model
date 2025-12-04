@@ -4,7 +4,7 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Floor(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False, unique=True)
+    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False, unique=True)
     storey = models.IntegerField()
     
 class Zone(models.Model):

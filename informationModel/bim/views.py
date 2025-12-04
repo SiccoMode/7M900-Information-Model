@@ -40,11 +40,10 @@ def createNewFloor(request):
         if form.is_valid():            
 
             floor = Floor()
-            floor.zones = form.cleaned_data['zone']
-            floor.teacher = form.cleaned_data['teacher']  
+            floor.storey = form.cleaned_data['storey']
             floor.save()
 
-            return redirect('courses')
+            return redirect('floors')
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -64,14 +63,18 @@ def createNewZone(request):
             zone.width = form.cleaned_data['width']  
             zone.x = form.cleaned_data['x']
             zone.y = form.cleaned_data['y']
-            zone.building_elements = form.cleaned_data['building_elements']
+            zone.floor = form.cleaned_data['floor']
+
+            building_elements = form.cleaned_data.get('building_elements')
+            if building_elements:
+                zone.building_elements.set(building_elements)
             zone.save()
 
-            return redirect('courses')
+            return redirect('zones')
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = NewFloorsForm()
+        form = NewZonesForm()
 
     return render(request, 'newzone.html', {'form': form})
 
@@ -85,19 +88,22 @@ def createNewBuildingElement(request):
             building_element = BuildingElement()
             building_element.height = form.cleaned_data['height']
             building_element.width = form.cleaned_data['width']  
-            building_element.length = form.cleaned['length']
+            building_element.length = form.cleaned_data['length']
             building_element.description = form.cleaned_data['description']
             building_element.name = form.cleaned_data['name']
-            building_element.person = form.cleaned_data['personResponsible']
+            building_element.personResponsible = form.cleaned_data['personResponsible']
             building_element.start_date = form.cleaned_data["start_date"]
             building_element.end_date = form.cleaned_data['end_date']
-            building_element.zones = form.cleaned_data['zones']
             building_element.save()
 
-            return redirect('courses')
+            zones = form.cleaned_data.get('zones')
+            if zones:
+                building_element.zones.set(zones)
+
+            return redirect('buildingelements')
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = NewFloorsForm()
+        form = NewBuildingElementsForm()
 
     return render(request, 'newelement.html', {'form': form})

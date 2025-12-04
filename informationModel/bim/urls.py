@@ -9,5 +9,5 @@ urlpatterns = [
     path('buildingelements/', views.getBuildingElements, name='buildingelements'),
     path('newelement/', views.createNewBuildingElement, name='newelement'),
     path('newfloor/', views.createNewFloor, name='newfloor'),
-    path('newzone', views.createNewZone, name='newzone'),
+    path('newzone/', views.createNewZone, name='newzone'),
 ]

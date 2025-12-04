@@ -8,16 +8,16 @@
     <ul class="list-reset">
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
           <a href="{% url 'floors' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">             
-            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Floors</span>      
+            <span class="pb-1 md:pb-0 text-sm">Floors</span>      
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'zones' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
-            <span class="pb-1 md:pb-0 text-sm">Zones</span>   
+          <a href="{% url 'zones' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
+            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Zones</span>   
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'buildingelements' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
+          <a href="{% url 'buildingelements' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
             <span class="pb-1 md:pb-0 text-sm">Building Elements</span>   
           </a>
        </li>
@@ -26,10 +26,10 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Teachers</h1>
+<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Zones</h1>
 
     <br />
-    <button type="submit"><a href="{% url 'newzone' %}">Create a new teacher</a></button>
+    <button type="submit"><a href="{% url 'newzone' %}">Create new zone</a></button>
     <br />
     <br />
     <p>Here are your Zones:</p>
@@ -40,15 +40,33 @@
                         <li>
                             <div class = "row">
                                 <div class = "col-md-3">
-                                    Teacher ID#{{ zone.id }}
+                                    Zone ID#{{ zone.globalId }}
                                 </div>                        
                                 <div class = "col-md-3">
-                                    First Name: {{ zone.firstName }}
+                                    Length: {{ zone.length }} 
                                 </div>
                                 <div class = "col-md-3">
-                                    Last Name: {{ zone.lastName }}
+                                    Width: {{ zone.width }} 
+                                </div>
+                                <div class = "col-md-3">
+                                    Position: {{ zone.x }}, {{ zone.y }} 
+                                </div>
+                                <div class = "col-md-3">
+                                    Floor: {{ zone.floor.storey }}
                                 </div>
                             </div>
+                            {% if zone.building_elements.all %}
+                            <div class="mt-2">
+                                Building Elements:
+                                <ul>
+                                    {% for be in zone.building_elements.all %}
+                                        <li>{{be.name}}</li>
+                                    {% empty %}
+                                        <li>No elements</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
                         </li>
                     </blockquote>
                     {% endfor %}

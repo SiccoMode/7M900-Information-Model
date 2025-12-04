@@ -29,23 +29,35 @@
 <h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Floors</h1>
 
     <br />
-    <button type="submit"><a href="{% url 'newfloor' %}">Create a new course</a></button>
+    <button type="submit"><a href="{% url 'newfloor' %}">Create new floor</a></button>
     <br />
     <br />
-    <p>Zones:</p>
-        {% if courses %}
+    <p>Floors:</p>
+        {% if floors %}
                 <ul>
-                    {% for course in courses %}
+                    {% for floor in floors %}
                     <blockquote class="border-l-4 border-red-500 my-8 pl-8 md:pl-12">
                         <li>
                             <div class = "row">
                                 <div class = "col-md-3">
-                                    Zone ID#{{ zones.id }}
+                                    Floor ID#{{ floor.id }}
                                 </div>                        
                                 <div class = "col-md-3">
-                                    Created: {{ course.created }}
+                                    Storeys = {{ floor.storey }}
                                 </div>
                             </div>
+                            {% if floor.zone_set.all %}
+                            <div class="mt-2">
+                                Zones on this floor:
+                                <ul>
+                                    {% for zone in floor.zone_set.all %}
+                                        <li>Zone {{ zone.globalId }} - Length: {{ zone.length }}, Width: {{ zone.width }}, Position: ({{ zone.x }}, {{ zone.y }})</li>
+                                    {% empty %}
+                                        <li>No zones</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
                         </li>
                     </blockquote>
                     {% endfor %}
