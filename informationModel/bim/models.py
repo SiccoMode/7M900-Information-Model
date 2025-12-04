@@ -4,11 +4,11 @@ from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Floor(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False, unique=True)
     storey = models.IntegerField()
     
 class Zone(models.Model):
-    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
+    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False, unique=True)
     length = models.DecimalField(max_digits=8, decimal_places=2)
     width = models.DecimalField(max_digits=8,decimal_places=2)
     x = models.DecimalField(max_digits=8, decimal_places=2)
@@ -17,7 +17,7 @@ class Zone(models.Model):
     building_elements = models.ManyToManyField("BuildingElement")
 
 class BuildingElement(models.Model):
-    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False)
+    globalId = models.UUIDField(primary_key=True, default=uuid.uuid4, editable = False, unique=True)
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=100)
     height = models.IntegerField()
@@ -26,7 +26,6 @@ class BuildingElement(models.Model):
     zones = models.ManyToManyField(Zone)
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
-    zones = models.ManyToManyField(Zone)
     personResponsible = models.CharField(default="Sicco Oortwijn", max_length=100)
 
     class ProgressState(models.TextChoices):
