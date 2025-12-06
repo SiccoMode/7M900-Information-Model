@@ -12,7 +12,7 @@ class NewZonesForm(forms.Form):
     width = forms.DecimalField(max_digits=8, decimal_places=2)
     x = forms.DecimalField(max_digits=8, decimal_places=2)
     y = forms.DecimalField(max_digits=8, decimal_places=2)
-    floor = forms.ModelChoiceField(queryset=Floor.objects.all(), required = False, widget=forms.CheckboxSelectMultiple)
+    floor = forms.ModelChoiceField(queryset=Floor.objects.all())
 
 
 

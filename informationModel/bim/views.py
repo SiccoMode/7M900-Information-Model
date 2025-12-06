@@ -29,14 +29,14 @@ def getWalls(request):
     context={
         'walls': walls,
     }
-    return render(request, "buildingelements.html", context)
+    return render(request, "walls.html", context)
 
 def getColumns(request):
     columns = Column.objects.all()
     context={
         'columns': columns,
     }
-    return render(request, "buildingelements.html", context)
+    return render(request, "columns.html", context)
 
 
 def createNewFloor(request):    
@@ -74,8 +74,6 @@ def createNewZone(request):
             zone.floor = form.cleaned_data['floor']
             zone.save()
 
-  
-
             return redirect('zones')
 
     # if a GET (or any other method) we'll create a blank form
@@ -101,6 +99,7 @@ def createNewWall(request):
             wall.start_date = form.cleaned_data["start_date"]
             wall.end_date = form.cleaned_data['end_date']
             wall.current_state = form.cleaned_data['progressState']
+            wall.color = form.cleaned_data['color']
             wall.save()
 
             zones = form.cleaned_data.get('zones')
@@ -132,6 +131,7 @@ def createNewColumn(request):
             column.start_date = form.cleaned_data["start_date"]
             column.end_date = form.cleaned_data['end_date']
             column.current_state = form.cleaned_data['progressState']
+            column.geometry = form.cleaned_data['geometry']
             column.save()
 
             zones = form.cleaned_data.get('zones')

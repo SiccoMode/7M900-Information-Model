@@ -32,38 +32,41 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Building Elements</h1>
+<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Columns</h1>
 
     <br />
-    <button type="submit"><a href="{% url 'newelement' %}">New Building Element</a></button>
+    <button type="submit"><a href="{% url 'newcolumn' %}">New Column</a></button>
     <br />
     <br />
-    <p>Building Elements:</p>
-        {% if buildingElements %}
+    <p>Columns:</p>
+        {% if columns %}
             <ul>
-                {% for element in buildingElements %}
+                {% for column in columns %}
                 <blockquote class="border-l-4 border-red-500 my-8 pl-8 md:pl-12">
                     <li>
                         <div class = "row">
                             <div class = "col-md-3">
-                                Element ID#{{ element.id }}
+                                Element ID#{{ column.id }}
                             </div>                        
                             <div class = "col-md-3">
-                                Name: {{ element.name }}
+                                Name: {{ column.name }}
                             </div>                       
                             <div class = "col-md-3">
-                                Description: {{ element.description }}
+                                Description: {{ column.description }}
                             </div>
                             <div class = "col-md-3">
-                                Dimensions: {{ element.height }}mm x {{ element.width }}mm x {{ element.length }}mm
+                                Dimensions: {{ column.height }}mm x {{ column.width }}mm x {{ column.length }}mm
                             </div>
                             <div class = "col-md-3">
-                                Person Responsible: {{ element.personResponsible }}
+                                Person Responsible: {{ column.personResponsible }}
+                            </div>
+                            <div class = "col-md-3">
+                                Geometry: {{ column.geometry }}
                             </div>
                             <div class = "col-md-3">
                                 Zones:
                                 <ul>
-                                    {% for zone in element.zones.all %}
+                                    {% for zone in column.zones.all %}
                                         <li>- {{ zone }}</li>
                                     {% empty %}
                                         <li>- No Zones</li>

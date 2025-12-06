@@ -31,10 +31,10 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">New Building Element</h1>
+<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Create new Column</h1>
     <br />
-    <p>Create New Building Element:</p>
-    <form enctype=multipart/form-data action="/newelement/" method="post">
+    <p>Create Column:</p>
+    <form enctype=multipart/form-data action="/newcolumn/" method="post">
     {% csrf_token %}
     <table>
         {{ form.as_table }}

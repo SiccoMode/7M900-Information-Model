@@ -12,18 +12,18 @@
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'zones' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
-            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Zones</span> 
+          <a href="{% url 'zones' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
+            <span class="pb-1 md:pb-0 text-sm">Zones</span> 
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'walls' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
-            <span class="pb-1 md:pb-0 text-sm">Walls</span>   
+          <a href="{% url 'walls' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
+            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Walls</span>   
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'columns' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
-            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Columns</span> 
+          <a href="{% url 'columns' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
+            <span class="pb-1 md:pb-0 text-sm">Columns</span> 
           </a>
        </li>
     </ul>
@@ -31,10 +31,10 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">New Building Element</h1>
+<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">New Wall</h1>
     <br />
-    <p>Create New Building Element:</p>
-    <form enctype=multipart/form-data action="/newelement/" method="post">
+    <p>Create New Wall Element:</p>
+    <form enctype=multipart/form-data action="/newwall/" method="post">
     {% csrf_token %}
     <table>
         {{ form.as_table }}

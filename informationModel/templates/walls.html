@@ -17,8 +17,13 @@
           </a>
        </li>
        <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
-          <a href="{% url 'buildingelements' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
-            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Building Elements</span>   
+          <a href="{% url 'walls' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:border-red-500 lg:hover:border-red-500">
+            <span class="pb-1 md:pb-0 text-sm text-gray-900 font-bold">Walls</span>   
+          </a>
+       </li>
+       <li class="py-2 md:my-0 hover:bg-red-100 lg:hover:bg-transparent">
+          <a href="{% url 'columns' %}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-red-500 border-l-4 border-transparent lg:hover:border-gray-400">
+            <span class="pb-1 md:pb-0 text-sm">Columns</span> 
           </a>
        </li>
     </ul>
@@ -26,43 +31,46 @@
 {% endblock %}
 
 {% block content %}
-<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Building Elements</h1>
+<h1 class="text-3xl text-slate-900 font-extrabold dark:text-slate-200">Wall</h1>
 
     <br />
-    <button type="submit"><a href="{% url 'newelement' %}">New Building Element</a></button>
+    <button type="submit"><a href="{% url 'newwall' %}">New Wall</a></button>
     <br />
     <br />
-    <p>Building Elements:</p>
-        {% if buildingElements %}
+    <p>Walls:</p>
+        {% if walls %}
             <ul>
-                {% for element in buildingElements %}
+                {% for wall in walls %}
                 <blockquote class="border-l-4 border-red-500 my-8 pl-8 md:pl-12">
                     <li>
                         <div class = "row">
                             <div class = "col-md-3">
-                                Element ID#{{ element.id }}
+                                Element ID#{{ wall.id }}
                             </div>                        
                             <div class = "col-md-3">
-                                Name: {{ element.name }}
+                                Name: {{ wall.name }}
                             </div>                       
                             <div class = "col-md-3">
-                                Description: {{ element.description }}
+                                Description: {{ wall.description }}
                             </div>
                             <div class = "col-md-3">
-                                Dimensions: {{ element.height }}mm x {{ element.width }}mm x {{ element.length }}mm
+                                Dimensions: {{ wall.height }}mm x {{ wall.width }}mm x {{ wall.length }}mm
                             </div>
                             <div class = "col-md-3">
-                                Person Responsible: {{ element.personResponsible }}
+                                Person Responsible: {{ wall.personResponsible }}
                             </div>
                             <div class = "col-md-3">
                                 Zones:
                                 <ul>
-                                    {% for zone in element.zones.all %}
+                                    {% for zone in wall.zones.all %}
                                         <li>- {{ zone }}</li>
                                     {% empty %}
                                         <li>- No Zones</li>
                                     {% endfor %}
                                 </ul>
+                            </div>
+                            <div>
+                                color: {{ wall.color }}
                             </div>
                         </div>
                     </li>
