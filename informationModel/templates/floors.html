@@ -51,7 +51,7 @@
                                 Zones on this floor:
                                 <ul>
                                     {% for zone in floor.zone_set.all %}
-                                        <li>Zone {{ zone.globalId }} - Length: {{ zone.length }}, Width: {{ zone.width }}, Position: ({{ zone.x }}, {{ zone.y }})</li>
+                                        <li>Zone {{ zone.id }} - Length: {{ zone.length }}, Width: {{ zone.width }}, Position: ({{ zone.x }}, {{ zone.y }})</li>
                                     {% empty %}
                                         <li>No zones</li>
                                     {% endfor %}
