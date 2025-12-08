@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Floor, Zone, Wall, Column
 from .forms import NewFloorsForm, NewZonesForm, NewWallForm, NewColumnForm
-from django.db.models import Q, Avg
 
 def index(request):
     return HttpResponse("Hello, world. You're at the students index.")

@@ -9,7 +9,7 @@ urlpatterns = [
     path('walls/', views.getWalls, name='walls'),
     path('columns/', views.getColumns, name='columns'),
     path('newwall/', views.createNewWall, name='newwall'),
-    path('newcolumn', views.createNewColumn, name = 'newcolumn'),
+    path('newcolumn/', views.createNewColumn, name = 'newcolumn'),
     path('newfloor/', views.createNewFloor, name='newfloor'),
     path('newzone/', views.createNewZone, name='newzone'),
 ]
