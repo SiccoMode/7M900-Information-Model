@@ -5,15 +5,48 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from .models import Floor, Zone, Wall, Column
 from .forms import NewFloorsForm, NewZonesForm, NewWallForm, NewColumnForm
+from django.db.models import Q, Avg
 
 def index(request):
     return HttpResponse("Hello, world. You're at the students index.")
 
 def getFloors(request):
     floors = Floor.objects.all()
-    context={
+    floor_data = []
+    
+    for floor in floors:
+        zones = Zone.objects.filter(floor=floor)
+        
+        # Get walls and columns for this floor
+        walls = Wall.objects.filter(zones__in=zones).distinct()
+        columns = Column.objects.filter(zones__in=zones).distinct()
+        
+        # Get unfinished walls and columns
+        unfinished_walls = walls.exclude(current_state='CO')
+        unfinished_columns = columns.exclude(current_state='CO')
+        
+        # Calculate average progress for all building elements
+        all_elements = list(walls) + list(columns)
+        total_progress = sum([element.progressPercentage for element in all_elements])
+        avg_progress = total_progress / len(all_elements) if all_elements else 0
+        
+        floor_data.append({
+            'floor': floor,
+            'zones_count': zones.count(),
+            'total_elements': len(all_elements),
+            'unfinished_elements': len(unfinished_walls) + len(unfinished_columns),
+            'walls': walls.count(),
+            'unfinished_walls': unfinished_walls.count(),
+            'columns': columns.count(),
+            'unfinished_columns': unfinished_columns.count(),
+            'avg_progress': round(avg_progress, 2)
+        })
+    
+    context = {
         'floors': floors,
+        'floor_data': floor_data,
     }
+
     return render(request, "floors.html", context)
 
 def getZones(request):

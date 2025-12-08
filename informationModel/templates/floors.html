@@ -37,32 +37,35 @@
     <button type="submit"><a href="{% url 'newfloor' %}">Create new floor</a></button>
     <br />
     <br />
-    <p>Floors:</p>
-        {% if floors %}
+    <p>Floors with Building Element Insights:</p>
+        {% if floor_data %}
                 <ul>
-                    {% for floor in floors %}
+                    {% for data in floor_data %}
                     <blockquote class="border-l-4 border-red-500 my-8 pl-8 md:pl-12">
                         <li>
                             <div class = "row">
                                 <div class = "col-md-3">
-                                    Floor ID#{{ floor.id }}
+                                    Floor ID#{{ data.floor.id }}
                                 </div>                        
                                 <div class = "col-md-3">
-                                    Storeys = {{ floor.storey }}
+                                    Storey: {{ data.floor.storey }}
+                                </div>
+                                <div class = "col-md-3">
+                                    Total Elements: {{ data.total_elements }}
+                                </div>
+                                <div class = "col-md-3">
+                                    Unfinished: {{ data.unfinished_elements }}
+                                </div>
+                                <div class = "col-md-3">
+                                    Walls (Unfinished): {{ data.walls }}
+                                </div>
+                                <div class = "col-md-3">
+                                    Columns (Unfinished): {{ data.columns }}
+                                </div>
+                                <div class = "col-md-3">
+                                    Avg Progress: {{ data.avg_progress }}%
                                 </div>
                             </div>
-                            {% if floor.zone_set.all %}
-                            <div class="mt-2">
-                                Zones on this floor:
-                                <ul>
-                                    {% for zone in floor.zone_set.all %}
-                                        <li>Zone {{ zone.id }} - Length: {{ zone.length }}, Width: {{ zone.width }}, Position: ({{ zone.x }}, {{ zone.y }})</li>
-                                    {% empty %}
-                                        <li>No zones</li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                            {% endif %}
                         </li>
                     </blockquote>
                     {% endfor %}

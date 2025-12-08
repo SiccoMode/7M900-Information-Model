@@ -27,6 +27,7 @@ class NewWallForm(forms.Form):
     personResponsible = forms.CharField(label="person responsible", max_length=200)
     zones = forms.ModelMultipleChoiceField(queryset=Zone.objects.all(), required = False, widget=forms.CheckboxSelectMultiple)
     progressState = forms.ChoiceField(choices=Wall.ProgressState.choices)
+    progressPercentage = forms.IntegerField(label="Progress Percentage", min_value=0, max_value=100)
     color = forms.CharField(label="color", max_length=100)
     
 class NewColumnForm(forms.Form):
@@ -40,5 +41,6 @@ class NewColumnForm(forms.Form):
     personResponsible = forms.CharField(label="person responsible", max_length=200)
     zones = forms.ModelMultipleChoiceField(queryset=Zone.objects.all(), required = False, widget=forms.CheckboxSelectMultiple)
     progressState = forms.ChoiceField(choices=Column.ProgressState.choices)
+    progressPercentage = forms.IntegerField(label="Progress Percentage", min_value=0, max_value=100)
     geomerty = forms.ChoiceField(choices=Column.GeometryType.choices)
     
